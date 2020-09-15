@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
   end
   
   def sort 
-    @movies = Movie.order
+    @movies = Movie.order(:title)
   end
 
   def create
