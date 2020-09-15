@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
   end
   
   def sort 
-    @movies.order(:title)
+    @movies.reverse()
   end
 
   def create
