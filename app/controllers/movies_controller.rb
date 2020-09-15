@@ -14,9 +14,12 @@ class MoviesController < ApplicationController
     @sort_type = params[:sort_type]
     if @sort_type == 'title'
       @movies = Movie.all.order(:title)
+      @title_css = 'hilite'
     elsif @sort_type == 'rating'
       @movies = Movie.all.order(:rating)
+      @title_css = nil
     else
+      @title_css = nil 
       @movies = Movie.all
     end
       
