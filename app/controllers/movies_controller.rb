@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
   end
   
   def sort 
-    
+    @movies = Movie.all
   end
 
   def create
