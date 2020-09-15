@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
     @all_ratings = ['G','PG','PG-13','R']
     @user_ratings = params[:ratings]
     @sort_type = params[:sort_type]
-    if @user_ratings.length == 0
+    if @user_ratings.keys.length == 0
       if @sort_type == 'title'
         @movies = Movie.all.order(:title)
         @title_css = 'hilite'
@@ -30,15 +30,15 @@ class MoviesController < ApplicationController
       end
     else 
       if @sort_type == 'title'
-        @movies = Movie.where({rating: @user_ratings}).order(:title)
+        @movies = Movie.where({rating: @user_ratings.keys}).order(:title)
         @title_css = 'hilite'
         @release_css = nil 
       elsif @sort_type == 'release_date'
-        @movies = Movie.where({rating: @user_ratings}).all.order(:release_date)
+        @movies = Movie.where({rating: @user_ratings.keys}).all.order(:release_date)
         @title_css = nil
         @release_css = 'hilite'
       else
-        @movies = Movie.where({rating: @user_ratings})
+        @movies = Movie.where({rating: @user_ratings.keys})
         @title_css = nil 
         @release_css = nil
       end
