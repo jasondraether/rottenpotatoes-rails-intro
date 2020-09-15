@@ -16,9 +16,9 @@ class MoviesController < ApplicationController
     user_ratings = params[:ratings]
     
     if user_ratings.nil?
-      filter = @all_ratings
+      @filter = @all_ratings
     else
-      filter = user_ratings.keys
+      @filter = user_ratings.keys
     end 
     
     
