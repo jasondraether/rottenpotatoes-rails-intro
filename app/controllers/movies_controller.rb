@@ -16,14 +16,14 @@ class MoviesController < ApplicationController
     user_ratings = params[:ratings]
     
     if user_ratings.nil?
-      filter = @all_ratings
+      filter = @all_ratings.keys
     else
-      filter = user_ratings
+      filter = user_ratings.keys
     end 
     
     
     if sort_type == 'title'
-      @movies = Movie.where(rating: filter.keys).order(:title)
+      @movies = Movie.all.order(:title)
       @title_css = 'hilite'
       @release_css = nil 
     elsif sort_type == 'release_date'
