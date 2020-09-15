@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
     # #   @release_css = nil
     # # end
 
-  @movies = Movie.all
+    @movies = Movie.all
       
   end
 
