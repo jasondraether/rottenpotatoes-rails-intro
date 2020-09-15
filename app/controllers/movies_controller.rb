@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     
     
     if sort_type == 'title'
-      @movies = Movie.where(:rating=>filter.keys).order(:title)
+      @movies = Movie.where(rating: filter.keys).order(:title)
       @title_css = 'hilite'
       @release_css = nil 
     elsif sort_type == 'release_date'
