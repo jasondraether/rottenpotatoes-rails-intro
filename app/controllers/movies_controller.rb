@@ -12,11 +12,11 @@ class MoviesController < ApplicationController
 
   def index
     
-    @sort = params[:sort]
-    if @sort != 1
-      @movies = Movie.all
+    @sort_type = params[:sort_type]
+    if @sort_type == 'title'
+      @movies = Movie.all.order(@sort_type)
     else
-      @movies = Movie.all.reverse()
+      @movies = Movie.all
     end
       
   end
