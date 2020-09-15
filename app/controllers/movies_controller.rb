@@ -11,15 +11,16 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G','PG','PG-13','R']
-    @user_ratings = params[:ratings]
-    @sort_type = params[:sort_type]
-    if @user_ratings.keys.length == 0
-      if @sort_type == 'title'
+    all_ratings = ['G','PG','PG-13','R']
+    user_ratings = params[:ratings]
+    sort_type = params[:sort_type]
+    
+    if user_ratings.keys.length == 0
+      if sort_type == 'title'
         @movies = Movie.all.order(:title)
         @title_css = 'hilite'
         @release_css = nil 
-      elsif @sort_type == 'release_date'
+      elsif sort_type == 'release_date'
         @movies = Movie.all.order(:release_date)
         @title_css = nil
         @release_css = 'hilite'
@@ -29,16 +30,16 @@ class MoviesController < ApplicationController
         @release_css = nil
       end
     else 
-      if @sort_type == 'title'
-        @movies = Movie.where({rating: @user_ratings.keys}).order(:title)
+      if sort_type == 'title'
+        @movies = Movie.where({rating: user_ratings.keys})
         @title_css = 'hilite'
         @release_css = nil 
-      elsif @sort_type == 'release_date'
-        @movies = Movie.where({rating: @user_ratings.keys}).all.order(:release_date)
+      elsif sort_type == 'release_date'
+        @movies = Movie.where({rating: user_ratings.keys})
         @title_css = nil
         @release_css = 'hilite'
       else
-        @movies = Movie.where({rating: @user_ratings.keys})
+        @movies = Movie.where({rating: user_ratings.keys})
         @title_css = nil 
         @release_css = nil
       end
