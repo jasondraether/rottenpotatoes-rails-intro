@@ -32,6 +32,9 @@ class MoviesController < ApplicationController
     # #   @title_css = nil 
     # #   @release_css = nil
     # # end
+    @title_css = nil
+    @release_css = nil 
+    
 
     @movies = Movie.all
       
