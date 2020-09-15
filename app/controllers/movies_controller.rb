@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
     
     @sort_type = params[:sort_type]
     if @sort_type == 'title'
-      @movies = Movie.all.order(@sort_type)
+      @movies = Movie.all.order(:title)
     else
       @movies = Movie.all
     end
