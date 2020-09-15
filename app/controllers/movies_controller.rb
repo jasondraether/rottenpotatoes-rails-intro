@@ -11,15 +11,16 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    
+    sort = params[:sort]
+    if sort != 1
+      @movies = Movie.all
+    end
+      
   end
 
   def new
     # default: render 'new' template
-  end
-  
-  def sort 
-    @movies.reverse()
   end
 
   def create
