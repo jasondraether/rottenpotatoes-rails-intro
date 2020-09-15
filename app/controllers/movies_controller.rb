@@ -14,8 +14,14 @@ class MoviesController < ApplicationController
     @all_ratings = ['G','PG','PG-13','R']
     sort_type = params[:sort_type]
     user_ratings = params[:ratings]
-    user_ratings = @all_ratings
-
+    
+    if user_ratings.nil?
+      filter = @all_ratings
+    else
+      filter = user_ratings
+    end 
+    
+    
     if sort_type == 'title'
       @movies = Movie.all.order(:title)
       @title_css = 'hilite'
