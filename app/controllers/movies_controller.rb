@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = ['G','PG','PG-13','R']
     sort_type = params[:sort_type]
-    
+    user_ratings = params[:ratings]
     if sort_type == 'title'
       @movies = Movie.all.order(:title)
       @title_css = 'hilite'
