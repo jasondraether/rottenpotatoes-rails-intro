@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     user_ratings = params[:ratings]
     sort_type = params[:sort_type]
     
-    if user_ratings.keys.length == 0
+    if user_ratings.length == 0
       user_ratings = @all_ratings
     end 
     
