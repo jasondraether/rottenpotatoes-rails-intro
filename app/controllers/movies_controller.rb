@@ -19,8 +19,8 @@ class MoviesController < ApplicationController
   end
   
   def sort 
-    @movies = Movie.all
-  end 
+    
+  end
 
   def create
     @movie = Movie.create!(movie_params)
