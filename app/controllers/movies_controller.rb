@@ -15,12 +15,15 @@ class MoviesController < ApplicationController
     if @sort_type == 'title'
       @movies = Movie.all.order(:title)
       @title_css = 'hilite'
-    elsif @sort_type == 'rating'
+      @release_css = nil 
+    elsif @sort_type == 'release_date'
       @movies = Movie.all.order(:rating)
       @title_css = nil
+      @release_css = 'hilite'
     else
-      @title_css = nil 
       @movies = Movie.all
+      @title_css = nil 
+      @release_css = nil
     end
       
   end
