@@ -27,11 +27,11 @@ class MoviesController < ApplicationController
       @title_css = 'hilite'
       @release_css = nil 
     elsif sort_type == 'release_date'
-      @movies = Movie.all.order(:release_date)
+      @movies = Movie.where(rating: filter).order(:release_date)
       @title_css = nil
       @release_css = 'hilite'
     else
-      @movies = Movie.all
+      @movies = Movie.where(rating: filter)
       @title_css = nil 
       @release_css = nil
     end
