@@ -11,12 +11,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    
     @sort_type = params[:sort_type]
     if @sort_type == 'title'
       @movies = Movie.all.order(:title)
     else
-      @movies = Movie.all
+      @movies = Movie.all.order(:rating)
     end
       
   end
