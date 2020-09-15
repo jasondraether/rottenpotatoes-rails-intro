@@ -14,13 +14,27 @@ class MoviesController < ApplicationController
     @all_ratings = ['G','PG','PG-13','R']
     sort_type = params[:sort_type]
     user_ratings = params[:ratings]
-    
+
     if user_ratings.nil?
-      @filter = @all_ratings
+      if session[:filter].nil?
+        @filter = @all_ratings
+        session[:filter] = @all_ratings
+      else 
+        @filter = session[:filter]
+      end 
     else
       @filter = user_ratings.keys
+      session[:filter] = @filter 
     end 
     
+    if sort_type.nil?
+      if session[:sort_type].nil?
+      else
+        sort_type = session[:sort_type]
+      end
+    else 
+      session[:sort_type] = sort_type
+    end 
     
     if sort_type == 'title'
       @movies = Movie.where(rating: @filter).order(:title)
@@ -35,6 +49,7 @@ class MoviesController < ApplicationController
       @title_css = nil 
       @release_css = nil
     end
+
       
   end
 
