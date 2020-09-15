@@ -16,35 +16,23 @@ class MoviesController < ApplicationController
     sort_type = params[:sort_type]
     
     if user_ratings.keys.length == 0
-      if sort_type == 'title'
-        @movies = Movie.all.order(:title)
-        @title_css = 'hilite'
-        @release_css = nil 
-      elsif sort_type == 'release_date'
-        @movies = Movie.all.order(:release_date)
-        @title_css = nil
-        @release_css = 'hilite'
-      else
-        @movies = Movie.all
-        @title_css = nil 
-        @release_css = nil
-      end
-    else 
-      if sort_type == 'title'
-        @movies = Movie.where({rating: user_ratings.keys})
-        @title_css = 'hilite'
-        @release_css = nil 
-      elsif sort_type == 'release_date'
-        @movies = Movie.where({rating: user_ratings.keys})
-        @title_css = nil
-        @release_css = 'hilite'
-      else
-        @movies = Movie.where({rating: user_ratings.keys})
-        @title_css = nil 
-        @release_css = nil
-      end
+      user_ratings = @all_ratings
     end 
-  
+    
+    if sort_type == 'title'
+      @movies = Movie.where({rating: user_ratings.keys}).order(:title)
+      @title_css = 'hilite'
+      @release_css = nil 
+    elsif sort_type == 'release_date'
+      @movies = Movie.where({rating: user_ratings.keys}).order(:release_date)
+      @title_css = nil
+      @release_css = 'hilite'
+    else
+      @movies = Movie.where({rating: user_ratings.keys})
+      @title_css = nil 
+      @release_css = nil
+    end
+
       
   end
 
